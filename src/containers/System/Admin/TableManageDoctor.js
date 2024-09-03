@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 // import  './TableManageUser.scss';
 import * as actions from '../../../store/actions'
+import {LANGUAGES} from '../../../utils';
 
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
@@ -10,11 +11,6 @@ import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import Select from 'react-select';
 
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
-];
 
 
 // Initialize a markdown parser
@@ -28,26 +24,61 @@ class TableManageDoctors extends Component {
         this.state={
             contentMarkdown: '',
             contentHtml:'',
-            selectedDoctor: '',
+            selectedOption: '',
             description:'',
+            listDoctors:[],
         }
     }
     componentDidMount(){
-      this.props.dispatch(fetchAllDoctors());
+      this.props.fetchAllDoctorsRedux();
     }
     componentDidUpdate(prevProps, prevState, snapshot){
-       
+      if(prevProps.allDoctors !== this.props.allDoctors){
+        let dataSelect = this.buildDataInputSelect(this.props.allDoctors);
+        this.setState({
+            listDoctors: dataSelect
+        })
+      }
+      if(prevProps.language !== this.props.language){
+        let dataSelect = this.buildDataInputSelect(this.props.allDoctors);
+        this.setState({
+            listDoctors: dataSelect
+        })
+      }
+    }
+
+    buildDataInputSelect = (inPutData)=>{
+        let result = [];
+        let {language}= this.props;
+        if( inPutData && inPutData.length > 0){
+            inPutData.map((item, index)=>{
+                let object={};
+                let labelVi = `${item.lastName} ${item.firstName}`;
+                let labelEn = `${item.firstName} ${item.lastName}`;
+                object.label = language === LANGUAGES.VI? labelVi: labelEn;
+                object.value = item.id;
+                result.push(object);
+
+            })
+        }
+        return result
     }
     // Finish!
     handleEditorChange=({ html, text })=> {
         this.setState({
             contentMarkdown: text,
-            contentHtml:html,
+            contentHtml: html,
         })
     }
 
     handleSaveContentMarkdown() {
-        alert('ok')
+        console.log('this.state luu: ', this.state)
+        this.props.saveInfoDoctorRedux({
+            contentHTML : this.state.contentHtml,
+            contentMD: this.state.contentMarkdown,
+            description: this.state.description,
+            doctorId: this.state.selectedOption.value,
+        })
     }
     handleChange = (selectedOption) => {
         this.setState({ selectedOption }
@@ -63,17 +94,17 @@ class TableManageDoctors extends Component {
       }
     render() {
    
+        console.log('this.state: ', this.state);
         return (
-            
             <div className="container manage-doctor">
                 <p className="text-center title">Tạo thêm thông tin Bác sĩ</p>
                 <div className='more-info col-12 d-flex justify-content-between my-3'>
                     <div className="content-left form-group col-md-4">
-                        <lable>Chon bac si</lable>
+                        <label>Chon bac si</label>
                         <Select
                             value={this.state.selectedOption}
                             onChange={this.handleChange}
-                            options={options}
+                            options={this.state.listDoctors}
                             // className='form-control' 
                         />
                     </div>
@@ -91,7 +122,7 @@ class TableManageDoctors extends Component {
                 <div className='manage-doctor-bottom'>
                     <MdEditor style={{ height: '500px' }} 
                     renderHTML={text => mdParser.render(text)} 
-                    onChange={()=>this.handleEditorChange} />
+                    onChange={this.handleEditorChange} />
                 </div>
                 <button className='my-5 px-2 btn'
                 style={{border:'1px solid black'}}
@@ -106,14 +137,16 @@ class TableManageDoctors extends Component {
 
 const mapStateToProps = state => {
     return {
-        listUsers: state.admin.users
+        allDoctors: state.admin.allDoctors,
+        language: state.app.language,
+        
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         fetchAllDoctorsRedux: ()=>dispatch(actions.fetchAllDoctors()),
-        // deleteUserRedux: (id)=>dispatch(actions.deleteUser(id)),
+        saveInfoDoctorRedux: (data)=>dispatch(actions.saveInfoDoctor(data)),
     };
 };
 

@@ -43,7 +43,11 @@ const actionTypes = Object.freeze({
     
     //get all doctors
     FETCH_ALL_DOCTORS_SUCCEED: 'FETCH_ALL_DOCTORS_SUCCEED',
-    FETCH_ALL_DOCTORS_FAILED: 'FETCH_ALL_DOCTORS_FAILED',
+    FETCH_ALL_DOCTORS_FAILED: 'FETCH_ALL_DOCTORS_FAILED', 
+    
+    //save info doctor
+    SAVE_INFO_DOCTOR_SUCCEED: 'SAVE_INFO_DOCTOR_SUCCEED',
+    SAVE_INFO_DOCTOR_FAILED: 'SAVE_INFO_DOCTOR_FAILED',
 })
 
 export default actionTypes;
