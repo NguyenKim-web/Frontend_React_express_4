@@ -1,0 +1,21 @@
+.user-redux-body{
+    .loading-text{
+        color: red;
+    }
+    .email-password-name{
+        display: flex;
+        justify-content: space-between;
+    }
+    .image-position-role-gender{
+        display: flex;
+        gap: 30px;
+        justify-content: space-between;
+    }
+    .phone-address{
+        display: flex;
+        gap: 30px;
+        justify-content: space-between;
+    }
+}
+           
+                             
