@@ -1,0 +1,40 @@
+.doctor-detail-container{
+    .intro-doctor{
+        display: flex;
+       
+        border: 1px solid black;
+        .intro-doctor-left{
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-image: center center no-repeat;
+            border: 1px solid black;
+            margin: 30px;
+            
+        }
+        .intro-doctor-right{
+            padding: 20px 30px;
+            width: 80%;
+           
+            .up{
+                font-size: 20px;
+                font-weight: 600;
+            }
+            .down{
+
+            }
+        }
+    }
+    .schedule-doctor{
+        border: 1px solid black;
+    }
+    .detail-info-doctor{
+        border: 1px solid black;
+    }
+    .comment-doctor{
+        border: 1px solid black;
+    }
+}
+
+
+

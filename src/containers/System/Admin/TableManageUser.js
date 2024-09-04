@@ -83,7 +83,7 @@ class TableManageUsers extends Component {
                         })}
                     </tbody>
                 </table>
-                <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
+                {/* <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} /> */}
             </div>
         )
     }
