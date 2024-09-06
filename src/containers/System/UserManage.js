@@ -128,6 +128,7 @@ class UserManage extends Component {
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Address</th>
+                            <th>Role ID</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -139,6 +140,7 @@ class UserManage extends Component {
                                         <td>{item.firstName}</td>
                                         <td>{item.lastName}</td>
                                         <td>{item.address}</td>
+                                        <td>{item.roleId}</td>
                                         <td>
                                             <button onClick={()=>{this.handleEditUser(item)}}><i className="fas fa-user-edit"> </i></button>
                                             <button onClick={()=>{this.handleDeleteUser(item)}}><i className="fas fa-trash"></i></button>

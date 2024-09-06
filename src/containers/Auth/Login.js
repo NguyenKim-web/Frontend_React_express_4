@@ -65,6 +65,11 @@ class Login extends Component {
     handleShowEye=()=>{
         this.setState({isShowPassword : !this.state.isShowPassword})
     }
+    handleKyeDown=(event)=>{
+        if(event.key ==='Enter'){
+            this.handleLogin()
+        }
+    }
     render() {
 
         return (
@@ -87,6 +92,7 @@ class Login extends Component {
                                 type={this.state.isShowPassword?'text':'password'}
                                 placeholder="Enter your password"
                                 onChange = {(event)=> this.handleOnChangeInputPassword(event)}
+                                onKeyDown ={(event)=>this.handleKyeDown(event)}
                                 />
                                 <span 
                                     onClick={()=>{this.handleShowEye()}}

@@ -58,6 +58,7 @@ class TableManageUsers extends Component {
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Address</th>
+                            <th>Role ID</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -70,6 +71,7 @@ class TableManageUsers extends Component {
                                 <td>{item.firstName}</td>
                                 <td>{item.lastName} </td>
                                 <td>{item.address}</td>
+                                <td>{item.roleId}</td>
                                 <td>
                                     <button
                                     onClick={()=>this.handleEditUser(item)}

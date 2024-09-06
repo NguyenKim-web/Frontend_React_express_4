@@ -4,6 +4,7 @@ import HomeHeader from '../../HomeHeader'
 import './DetailInfoOfDoctor.scss'
 import {getDetailOfDoctorServiceFromReact} from '../../../../services/userService'
 import { LANGUAGES } from '../../../../utils';
+import DoctorSchedule from './DoctorSchedule';
 
 
 class DetailInfoOfDoctor extends Component {
@@ -61,17 +62,22 @@ class DetailInfoOfDoctor extends Component {
                             </div>
                         </div>
                         <div className="schedule-doctor">
-test
+                            <div className="content-left">
+                                <DoctorSchedule
+                                doctorIdFromParent={detailOfDoctor && detailOfDoctor.id? detailOfDoctor.id: -1}/>
+                            </div>
+                            <div className="content-right">
+                                
+                            </div>
                         </div>
                         <div className="detail-info-doctor">
                         {detailOfDoctor && detailOfDoctor.Markdown && detailOfDoctor.Markdown.contentHTML &&
-                                        <p dangerouslySetInnerHTML={{__html: detailOfDoctor.Markdown.contentHTML }}>
-                                          
+                                        <p dangerouslySetInnerHTML={{__html: detailOfDoctor.Markdown.contentHTML }}> 
                                         </p>
                                     }
                         </div>
                         <div className="comment-doctor">
-test
+
                         </div>
                     </div>
                 </div>

@@ -282,5 +282,28 @@ export const saveInfoDoctor = (data)=>{
         }
     }
 }
-
+export const fetchAllSchedule = ()=>{
+    return async(dispatch, getState)=>{
+        try {
+            let res = await getAllCodeFromUserService('TIME')
+            console.log('res in react la 3 ban ghi (from adminAction): ', res)
+            if(res && res.errCode === 0){
+                dispatch({
+                    type: actionTypes.FETCH_ALL_CODE_SCHEDULE_HOURS_SUCCEED,
+                    dataTimes: res.data
+                })
+            }else{
+                dispatch({
+                    type: actionTypes.FETCH_ALL_CODE_SCHEDULE_HOURS_FAILED
+                })
+            }
+           
+        } catch (e) {
+            console.log('FETCH_ALL_CODE_SCHEDULE_HOURS_FAILED: ', e);
+            dispatch({
+                type: actionTypes.FETCH_ALL_CODE_SCHEDULE_HOURS_FAILED
+            })
+        }
+    }
+}
 

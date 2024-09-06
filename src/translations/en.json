@@ -38,6 +38,19 @@
             "manage-specialty":"Manage Specialty",
             "handbook":"Handbook",
             "manage-handbook":"Manage handbook"
+        },
+        "doctor":{
+            "manage-schedule":"Manage Doctor's Schedule",
+            "manage-doctor":"Quản lý bác sĩ",
+            "manage-admin":"Quản lý admin",
+            "crud":"CRUD user",
+            "crud-redux":"CRUD redux",
+            "clinic":"Phòng khám",
+            "manage-clinic":"Quản lý phòng khám",
+            "specialty":"Chuyên khoa",
+            "manage-specialty":"Quản lý chuyên khoa",
+            "handbook":"Cẩm nang",
+            "manage-handbook":"Quản lý cẩm nang"
         }
     },
     "manage-user": {
@@ -59,6 +72,11 @@
     "homepage":{
         "outstanding-doctor": "Outstanding doctors last week",
         "read-more":"Read more"
+    },
+    "manage-schedule":{
+        "title": "Manage Doctor's Schedule",
+        "select-doctor": "Select Doctor",
+        "select-date": "Select Date",
+        "save": "Save"
     }
-
 }
