@@ -46,6 +46,15 @@ const saveBulkDoctorServiceFromReact =(data)=>{
 const getScheduleDoctorServiceFromReact =(doctorId, date)=>{
     return axios.get(`/api/get-schedule-by-date?doctorId=${doctorId}&date=${date}`)
 }
+const getExtraInfoDoctorByIdServiceFromReact =(doctorId)=>{
+    return axios.get(`/api/get-extra-info-doctor-by-id?doctorId=${doctorId}`)
+}
+const getProfileDoctorByIdServiceFromReact =(doctorId)=>{
+    return axios.get(`/api/get-profile-doctor-by-id?id=${doctorId}`)
+}
+const postPatientBookingServiceFromReact =(data)=>{
+    return axios.post(`/api/patient-booking-appointment`,data)
+}
 
 export {handleLoginFromService, getAllUsersAPI, 
     createNewUserFromUserService, deleteUserService,
@@ -55,6 +64,9 @@ export {handleLoginFromService, getAllUsersAPI,
     saveInfoDoctorsServiceFromReact,
     getDetailOfDoctorServiceFromReact,
     saveBulkDoctorServiceFromReact,
-    getScheduleDoctorServiceFromReact
+    getScheduleDoctorServiceFromReact,
+    getExtraInfoDoctorByIdServiceFromReact,
+    getProfileDoctorByIdServiceFromReact,
+    postPatientBookingServiceFromReact
 
 };

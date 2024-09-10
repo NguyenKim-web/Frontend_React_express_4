@@ -87,7 +87,31 @@
             "available": "Hiện tại không có lịch khám rong thời gian này",
             "select": "Chọn ",
             "appointment": " và đặt lịch miễn phí"
+        },
+        "extra-info":{
+            "address-examination":"Địa chỉ khám",
+            "cost":"Chi phí khám: ",
+            "detail":"xem chi tiết",
+            "hide-content":"ẩn bảng giá",
+            "payment-info":"Người bệnh có thể thanh toán chi phí bằng hình thức: "
 
+
+        },
+        "booking-modal":{
+            "title":"Thông tin đặt lịch khám bệnh",
+            "fullName":"Họ và tên",
+            "phone":"Số điện thoại",
+            "email":"Email",
+            "address":"Địa chỉ",
+            "reason":"Lý do khám bệnh",
+            "birthday":"Ngày sinh",
+            "gender":"Giới tính",
+            "confirm":"Xác nhận",
+            "cancel":"Hủy"   
+        },
+        "profile":{
+            "cost":"Giá khám: ",
+            "free":"Miễn phí khi đặt lịch"
         }
     },
     "admin":{

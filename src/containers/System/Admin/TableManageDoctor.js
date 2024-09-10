@@ -49,11 +49,17 @@ class TableManageDoctors extends Component {
     }
     componentDidUpdate(prevProps, prevState, snapshot){
       if(prevProps.allDoctors !== this.props.allDoctors){
-        let dataSelect = this.buildDataInputSelect(this.props.allDoctors, 'USER');
+        let dataSelect = this.buildDataInputSelect(this.props.allDoctors, 'USERS');
         this.setState({
             listDoctors: dataSelect
         })
       }
+    //   if(prevProps.language !== this.props.language){
+    //     let dataSelect = this.buildDataInputSelect(this.props.allDoctors, 'USERS');
+    //     this.setState({
+    //         listDoctors: dataSelect
+    //     })
+    //   }
      
       if(prevProps.allDoctorInfos !== this.props.allDoctorInfos){
         let{resPrice, resPayment, resProvince} =this.props.allDoctorInfos;
@@ -67,7 +73,7 @@ class TableManageDoctors extends Component {
         })
       }
       if(prevProps.language !== this.props.language){
-        let dataSelect = this.buildDataInputSelect(this.props.allDoctors, 'USER');
+        let dataSelect = this.buildDataInputSelect(this.props.allDoctors, 'USERS');
         let{resPrice, resPayment, resProvince} =this.props.allDoctorInfos;
         let dataSelectPrice = this.buildDataInputSelect(resPrice, 'PRICE');
         let dataSelectPayment = this.buildDataInputSelect(resPayment, 'PAYMENT');
@@ -143,20 +149,52 @@ class TableManageDoctors extends Component {
             selectedProvince: this.state.selectedProvince.value,
             clinicName: this.state.clinicName,
             clinicAddress: this.state.clinicAddress,
-            note: history.state.note
+            note: this.state.note
         })
     }
     handleChangeSelect =async (selectedOption) => {
         this.setState({ selectedOption });
+        let {listPrices, listPayMethods, listProvinces} = this.state;
         let res = await getDetailOfDoctorServiceFromReact(selectedOption.value)
         if(res && res.errCode === 0 && res.data && res.data.Markdown){
             let markdown = res.data.Markdown
-            console.log('markdown',markdown )
+            let clinicAddress ='', clinicName ='', note='', paymentId='', priceId='', provinceId='',
+            selectedPayMethod:'', selectedPrice:'',selectedProvince:''
+            ;
+            if(res.data.DoctorInfo){
+                clinicAddress = res.data.DoctorInfo.clinicAddress;
+                clinicName = res.data.DoctorInfo.clinicName;
+                note = res.data.DoctorInfo.note;
+                
+                paymentId = res.data.DoctorInfo.paymentId;
+                priceId = res.data.DoctorInfo.priceId;
+                provinceId = res.data.DoctorInfo.provinceId;
+
+                selectedPayMethod = listPayMethods.find(item=>{
+                    return item && item.value === paymentId;
+                })
+                selectedPrice = listPrices.find(item=>{
+                    return item && item.value === priceId;
+                })
+                selectedProvince = listProvinces.find(item=>{
+                    return item && item.value === provinceId;
+                })
+                // priceId = res.data.DoctorInfo.priceId;
+                // provinceId = res.data.DoctorInfo.provinceId;
+            }
+            // console.log('res.data: ', res.data )
             this.setState({
                 contentHtml : markdown.contentHTML,
                 contentMarkdown: markdown.contentMD,
                 description: markdown.description,
-                hasOldData: true
+                hasOldData: true,
+                clinicAddress : clinicAddress,
+                clinicName : clinicName,
+                note : note,
+                selectedPayMethod: selectedPayMethod,
+                selectedPrice: selectedPrice,
+                selectedProvince: selectedProvince,
+
             })
             // console.log('this.state',this.state )
         }else{
@@ -164,7 +202,10 @@ class TableManageDoctors extends Component {
                 contentHTML : '',
                 contentMD: '',
                 description: '',
-                hasOldData:false
+                hasOldData:false,
+                clinicAddress : '',
+                clinicName : '',
+                note : '',
             })
         }
     } 
@@ -225,7 +266,7 @@ class TableManageDoctors extends Component {
                         />
                     </div>
                     <div className="content-left form-group col-md-4">
-                        <label> <FormattedMessage id ="admin.manage-doctor.choose-paymehtod"/></label>
+                        <label> <FormattedMessage id ="admin.manage-doctor.choose-paymethod"/></label>
                         <Select
                             value={this.state.selectedPayMethod}
                             onChange={this.handleChangeSelectDoctorInfo}

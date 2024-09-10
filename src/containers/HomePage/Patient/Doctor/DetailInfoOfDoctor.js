@@ -5,6 +5,8 @@ import './DetailInfoOfDoctor.scss'
 import {getDetailOfDoctorServiceFromReact} from '../../../../services/userService'
 import { LANGUAGES } from '../../../../utils';
 import DoctorSchedule from './DoctorSchedule';
+import DoctorExtraInfo from './DoctorExtraInfo';
+import ProfileDoctor from './ProfileDoctor'
 
 
 class DetailInfoOfDoctor extends Component {
@@ -35,6 +37,7 @@ class DetailInfoOfDoctor extends Component {
     }
     render() {
         let {detailOfDoctor} = this.state;
+        console.log('doctor Id from (detailInfoOfDOctor.js): ', detailOfDoctor.id)
         let {language} = this.props
         let nameVi='', nameEn='';
         if(detailOfDoctor && detailOfDoctor.positionData ) {
@@ -48,18 +51,22 @@ class DetailInfoOfDoctor extends Component {
                 
                     <div className="container">
                         <div className="intro-doctor">
+                            {/* <ProfileDoctor 
+                            // doctorId= {detailOfDoctor.id}
+                            // doctorId= {this.state.currentDoctorId}
+                            // detailOfDoctor = {detailOfDoctor}
+                            />  */}
                             <div className="intro-doctor-left" 
-                            style={{backgroundImage: `url(${this.state.detailOfDoctor.image?this.state.detailOfDoctor.image:''})`}}>
-
+                                style={{backgroundImage: `url(${this.state.detailOfDoctor.image?this.state.detailOfDoctor.image:''})`}}>
                             </div>
                             <div className="intro-doctor-right">
                                 <div className="up">
-                                    {language === LANGUAGES.VI? nameVi: nameEn}
+                                {language === LANGUAGES.VI? nameVi: nameEn}
                                 </div>
                                 <div className="down">
                                     {detailOfDoctor && detailOfDoctor.Markdown && detailOfDoctor.Markdown.description &&
                                         <p>
-                                            {detailOfDoctor.Markdown.description}
+                                        {detailOfDoctor.Markdown.description}
                                         </p>
                                     }
                                 </div>
@@ -68,10 +75,12 @@ class DetailInfoOfDoctor extends Component {
                         <div className="schedule-doctor">
                             <div className="content-left">
                                 <DoctorSchedule
+                                detailOfDoctor = {detailOfDoctor}
                                 doctorIdFromParent={this.state.currentDoctorId}/>
                             </div>
                             <div className="content-right">
-                                
+                                <DoctorExtraInfo
+                                doctorIdFromParent={this.state.currentDoctorId}/>
                             </div>
                         </div>
                         <div className="detail-info-doctor">
@@ -83,6 +92,7 @@ class DetailInfoOfDoctor extends Component {
                         <div className="comment-doctor">
 
                         </div>
+                        
                     </div>
                 </div>
             </React.Fragment>

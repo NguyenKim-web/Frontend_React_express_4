@@ -84,7 +84,33 @@
             "schedule": "Schedule",
             "available": "The service is not available for now",
             "select": "Choose ",
-            "appointment": " and make a appointment foe free"
+            "appointment": " and make a appointment for free"
+        },
+        "extra-info":{
+            "address-examination":"Address for examination",
+            "cost":"Cost: ",
+            "detail":"detail",
+            "hide-content":"hide",
+            "payment-info":"Patient can pay with: "
+
+
+        },
+        "booking-modal":{
+            "title":"Booking information",
+            "fullName":"Full name",
+            "phone":"Phone number",
+            "email":"Email",
+            "address":"Address",
+            "reason":"Reasons for booking",
+            "birthday":"Date of birth",
+            "gender":"Gender",
+            "confirm":"Confirm",
+            "cancel":"Cancel"
+            
+        },
+        "profile":{
+            "cost":"Cost: ",
+            "free":"Free for booking"
         }
     },
     "admin":{

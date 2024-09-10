@@ -307,8 +307,6 @@ export const fetchAllSchedule = ()=>{
     }
 }
 
-fetchDoctorPrice
-
 export const fetchRequiredDoctorInfo = () => {
     // type: actionTypes.FETCH_GENDER_START,
     return async(dispatch, getState)=>{
@@ -324,9 +322,9 @@ export const fetchRequiredDoctorInfo = () => {
                 resProvince && resProvince.errCode === 0 ){
                 // console.log('getState la: ', getState)
                 let data={
-                    resPrice: resPrice.data
-                    resPayment: resPayment.data
-                    resProvince: resProvince.data
+                    resPrice: resPrice.data,
+                    resPayment: resPayment.data,
+                    resProvince: resProvince.data,
                 }
                 dispatch(fetchRequiredDoctorInfoSucceed(data));
             }else{
