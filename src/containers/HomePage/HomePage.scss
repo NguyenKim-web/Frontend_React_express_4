@@ -45,7 +45,19 @@
                                .doctor{
                                     object-fit: cover;
                                 }
+                            }  
+                            &.each-img{
+                               height: 150px;
+                               width: 150px;
+                              
+                               overflow: hidden;
+                               background-position: center;
+                               background-size: cover;
+                               border: 1px solid red;
+                               margin: 10px auto;
+                              
                             }
+
                             img{
                                 // height: 100%;
                                 width: 100%;

@@ -41,16 +41,17 @@
         },
         "doctor":{
             "manage-schedule":"Manage Doctor's Schedule",
-            "manage-doctor":"Quản lý bác sĩ",
-            "manage-admin":"Quản lý admin",
+            "manage-doctor":"Manage Doctor",
+            "manage-admin":"Manage admin",
             "crud":"CRUD user",
             "crud-redux":"CRUD redux",
-            "clinic":"Phòng khám",
-            "manage-clinic":"Quản lý phòng khám",
-            "specialty":"Chuyên khoa",
-            "manage-specialty":"Quản lý chuyên khoa",
-            "handbook":"Cẩm nang",
-            "manage-handbook":"Quản lý cẩm nang"
+            "clinic":"Clinic",
+            "manage-clinic":"Manage Clinic",
+            "specialty":"Specialty",
+            "manage-specialty":"Manage Specialty",
+            "handbook":"Handbook",
+            "manage-handbook":"Manage handbook",
+            "manage-patient": "Manage patient"
         }
     },
     "manage-user": {
@@ -71,7 +72,9 @@
     
     "homepage":{
         "outstanding-doctor": "Outstanding doctors last week",
-        "read-more":"Read more"
+        "read-more":"Read more",
+         "specialty":"Popular specialties",
+        "facility":"Popular facilities"
     },
     "manage-schedule":{
         "title": "Manage Doctor's Schedule",
@@ -79,6 +82,11 @@
         "select-date": "Select Date",
         "save": "Save"
     },
+    "manage-patient":{
+        "title": "Manage Patient's Schedule",
+        "select-date":"Select date"
+    },
+
     "patient":{
         "detail-doctor":{
             "schedule": "Schedule",
@@ -125,8 +133,23 @@
             "create": "Create new",
             "clinic-name": "Clinic, hospital name",
             "clinic-address": "Clinic, hospital address",
-            "note": "Note"
+            "note": "Note",
+            "choose-specialty": "Choose speciality",
+            "choose-clinic": "Chọn phòng khám, bệnh viện"
 
+        }, 
+        "manage-specialty":{
+            "title": "Add new specialty",
+            "specialty_name": "Specialty's name",
+            "specialty_image": "Image",
+            "save": "Save"
+        },
+        "manage-clinic":{
+            "title": "Add new clinic, hospital",
+            "clinic_name": "Clinic, hospital's name",
+            "clinic_address": "Clinic, hospital's address",
+            "clinic_image": "Image",
+            "save": "Save"
         }
     }
 }

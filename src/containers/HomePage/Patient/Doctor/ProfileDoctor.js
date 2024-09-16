@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import HomeHeader from '../../HomeHeader'
+// import HomeHeader from '../../HomeHeader'
 import './ProfileDoctor.scss'
-import {getDetailOfDoctorServiceFromReact, getProfileDoctorByIdServiceFromReact} from '../../../../services/userService'
+import { getProfileDoctorByIdServiceFromReact} from '../../../../services/userService'
 import { LANGUAGES } from '../../../../utils';
-import DoctorSchedule from './DoctorSchedule';
-import DoctorExtraInfo from './DoctorExtraInfo';
-import BookingModal from './Modal/BookingModal';
-import DetailInfoOfDoctor from './DetailInfoOfDoctor';
+// import DoctorSchedule from './DoctorSchedule';
+// import DoctorExtraInfo from './DoctorExtraInfo';
+// import BookingModal from './Modal/BookingModal';
+// import DetailInfoOfDoctor from './DetailInfoOfDoctor';
 import _ from 'lodash'
 import Numberformat from 'react-number-format'
 import moment from 'moment'
 import { FormattedMessage } from 'react-intl';
+import {Link} from 'react-router-dom'
 
 
 class ProfileDoctor extends Component {
@@ -44,7 +45,7 @@ class ProfileDoctor extends Component {
                 result = res.data;
             }
         }
-        console.log('result: ', result)
+        // console.log('result: ', result)
         return result;
 
     }
@@ -69,7 +70,7 @@ class ProfileDoctor extends Component {
     render() {
         let {profileDoctor} = this.state;
         // console.log('data profile(ProfileDoctor): ', profileDoctor)
-        let {language, doctorId, isShowDescDoctor, dataTime} = this.props
+        let {language, doctorId, isShowDescDoctor, dataTime, isShowLinkDetail,  isShowPrice} = this.props
         // console.log('this.props from(ProfileDoctor): ', this.props)
 
         let nameVi='', nameEn='';
@@ -106,7 +107,14 @@ class ProfileDoctor extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div><FormattedMessage id ="patient.profile.cost"/>
+                        {isShowLinkDetail === true && 
+                            <div className="view-detail-doctor">
+
+                               <Link to={`detail-doctor/${doctorId}`}> Xem them</Link>
+                               {/* <a href={`detail-doctor/${doctorId}`}> Xem them</a> */}
+                            </div>}
+                        {isShowPrice === true && 
+                            <div><FormattedMessage id ="patient.profile.cost"/>
                         {profileDoctor && profileDoctor.DoctorInfo && language === LANGUAGES.VI && 
                                     <Numberformat
                                     value={profileDoctor.DoctorInfo.priceData.valueVi}
@@ -125,8 +133,8 @@ class ProfileDoctor extends Component {
                                         
                                     />
                                 } 
-                           </div>
-                       
+                            </div>
+                       }
                     </div>
                 </div>
             </React.Fragment>

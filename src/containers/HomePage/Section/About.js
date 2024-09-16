@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../HomePage.scss';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 // Import css files
-import Slider from "react-slick";
+// import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import co_xuong_khop from '../../../assets/images/co-xuong-khop.jpg'
+// import co_xuong_khop from '../../../assets/images/co-xuong-khop.jpg'
 
 
 class About extends Component {

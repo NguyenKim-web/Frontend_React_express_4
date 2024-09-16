@@ -1,5 +1,5 @@
 import axios from '../axios';
-import * as queryString from 'query-string';
+// import * as queryString from 'query-string';
 
 
 const handleLoginFromService = (emailInput, passwordInput)=>{
@@ -56,6 +56,38 @@ const postPatientBookingServiceFromReact =(data)=>{
     return axios.post(`/api/patient-booking-appointment`,data)
 }
 
+const postPatientVerifyBookingServiceFromReact =(data)=>{
+    return axios.post(`/api/verify-booking-appointment`,data)
+}
+
+//specialty API
+const createNewSpecialtyServiceFromReact =(data)=>{
+    return axios.post(`/api/create-new-specialty`,data)
+}
+const getAllSpecialtiesServiceFromReact =()=>{
+    return axios.get(`/api/get-all-specialties`);
+}
+const getDetailSpecialtyByIdServiceFromReact =(data)=>{
+    return axios.get(`/api/get-detail-specialty-by-id?id=${data.id}&location=${data.location}`);
+}
+
+//clinic API
+const createNewClinicServiceFromReact =(data)=>{
+    return axios.post(`/api/create-new-clinic`,data)
+}
+const getAllClinicsServiceFromReact =()=>{
+    return axios.get(`/api/get-all-clinics`);
+}
+const getDetailClinicByIdServiceFromReact =(data)=>{
+    return axios.get(`/api/get-detail-clinic-by-id?id=${data.id}`);
+}
+//get patient appointment for doctor
+const getAllPatientForDoctorServiceFromReact =(data)=>{
+    return axios.get(`/api/get-list-patient-for-doctor?doctorId=${data.doctorId}&date=${data.date}`)
+}
+const sendRemedyServiceFromReact =(data)=>{
+    return axios.post(`/api/send-remedy`, data)
+}
 export {handleLoginFromService, getAllUsersAPI, 
     createNewUserFromUserService, deleteUserService,
     editUserService, getAllCodeFromUserService,
@@ -67,6 +99,17 @@ export {handleLoginFromService, getAllUsersAPI,
     getScheduleDoctorServiceFromReact,
     getExtraInfoDoctorByIdServiceFromReact,
     getProfileDoctorByIdServiceFromReact,
-    postPatientBookingServiceFromReact
+    postPatientBookingServiceFromReact,
+    postPatientVerifyBookingServiceFromReact,
+
+    createNewSpecialtyServiceFromReact,
+    getAllSpecialtiesServiceFromReact,
+    getDetailSpecialtyByIdServiceFromReact,
+    
+    createNewClinicServiceFromReact,
+    getAllClinicsServiceFromReact,
+    getDetailClinicByIdServiceFromReact,
+    getAllPatientForDoctorServiceFromReact,
+    sendRemedyServiceFromReact,
 
 };

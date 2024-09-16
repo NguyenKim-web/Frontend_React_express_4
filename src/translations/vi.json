@@ -2,7 +2,7 @@
 {
     "home-header":{
         "speciality":"Chuyên khoa",
-        "search-doctor":"Tìm bác sĩ theoc chuyên khoa",
+        "search-doctor":"Tìm bác sĩ theo chuyên khoa",
         "facility":"Cơ sở y tế",
         "select-hospital":"Chon bệnh viện, phòng khám",
         "doctor":"Bác sĩ",
@@ -19,7 +19,7 @@
         "specialist-examination":"Khám chuyên khoa",
         "remote-examination":"Khám từ xa",
         "general-examination":"Khám tổng quát",
-        "medical-test":"Xét nghiệm y học",
+        "medical-test":"Xét nghiệm y học", 
         "mental-health":"Sức khỏe tinh thần",
         "dental-check":"Khám nha khoa"
     },
@@ -49,7 +49,8 @@
             "specialty":"Chuyên khoa",
             "manage-specialty":"Quản lý chuyên khoa",
             "handbook":"Cẩm nang",
-            "manage-handbook":"Quản lý cẩm nang"
+            "manage-handbook":"Quản lý cẩm nang",
+            "manage-patient": "Quản lý bệnh nhân"
         }
 
     },
@@ -72,7 +73,10 @@
     
     "homepage":{
         "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
-        "read-more":"Xem thêm"
+        "read-more":"Xem thêm",
+        "specialty":"Chuyên khoa phổ biến",
+        "facility":"Bệnh viện phổ biến"
+
     },
     "manage-schedule":{
         "title": "Quản lý kế hoach khám bệnh của Bác sĩ",
@@ -80,6 +84,10 @@
         "select-date": "Chọn ngày",
         "save": "Lưu"
 
+    }, 
+    "manage-patient":{
+        "title": "Quản lý lịch khám bệnh",
+        "select-date":"Chọn ngày"
     },
     "patient":{
         "detail-doctor":{
@@ -126,9 +134,26 @@
             "create": "Tạo mới",
             "clinic-name": "Tên phong khám, bệnh viện",
             "clinic-address": "Địa chỉ phòng khám, bệnh viện",
-            "note": "Ghi chú"
+            "note": "Ghi chú",
+            "choose-specialty": "Chọn chuyên khoa",
+            "choose-clinic": "Chọn phòng khám, bệnh viện"
 
+
+        }, 
+        "manage-specialty":{
+            "title": "Tạo thêm thông tin Chuyên khoa",
+            "specialty_name": "Tên Chuyên khoa",
+            "specialty_image": "Hình ảnh",
+            "save": "Lưu"
+        },
+        "manage-clinic":{
+            "title": "Tạo thêm thông tin phòng khám, bệnh viện",
+            "clinic_name": "Tên phòng khám, bệnh viện",
+            "clinic_address": "Địa chỉ phòng khám, bệnh viện",
+            "clinic_image": "Hình ảnh",
+            "save": "Lưu"
         }
+
     }
 
     

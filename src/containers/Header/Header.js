@@ -6,7 +6,7 @@ import { adminMenu, doctorMenu } from './menuApp';
 import './Header.scss';
 import {LANGUAGES, USER_ROLE} from '../../utils';
 import { FormattedMessage } from 'react-intl';
-import {changeLanguageApp }from '../../store/actions';
+// import {changeLanguageApp }from '../../store/actions';
 import _ from 'lodash';
 
 class Header extends Component {

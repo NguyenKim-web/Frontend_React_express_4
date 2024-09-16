@@ -3,8 +3,9 @@ import { getAllCodeFromUserService, createNewUserFromUserService,
     deleteUserService, getAllUsersAPI,
     editUserService, getTopDoctorHomeServiceFromReact,
     getAllDoctorsServiceFromReact,saveInfoDoctorsServiceFromReact,
+    getAllSpecialtiesServiceFromReact, getAllClinicsServiceFromReact
 } from '../../services/userService';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 
 // export const fetchGenderStart = () => ({
 //     type: actionTypes.FETCH_GENDER_START,
@@ -100,7 +101,7 @@ export const createNewUser = (data) => {
     return async(dispatch, getState)=>{
         try {
             let res = await createNewUserFromUserService(data);
-            console.log('check data of createNewUserFromUserService(data) from adminAction: ', res)
+            // console.log('check data of createNewUserFromUserService(data) from adminAction: ', res)
             if(res && res.errCode === 0){
                 toast.success("Create a new user succeed");
                 dispatch(saveUserSucceed());
@@ -316,16 +317,25 @@ export const fetchRequiredDoctorInfo = () => {
             })
             let resPrice = await getAllCodeFromUserService("PRICE");
             let resPayment = await getAllCodeFromUserService("PAYMENT");
-            let resProvince = await getAllCodeFromUserService("Province");
+            let resProvince = await getAllCodeFromUserService("PROVINCE");
+            let resSpecialties = await getAllSpecialtiesServiceFromReact();
+            let resClinics = await getAllClinicsServiceFromReact();
+
+
             if(resPrice && resPrice.errCode === 0 &&
                 resPayment && resPayment.errCode === 0 &&
-                resProvince && resProvince.errCode === 0 ){
+                resProvince && resProvince.errCode === 0 &&
+                resSpecialties && resSpecialties.errCode === 0 &&
+                resClinics && resClinics.errCode === 0){
                 // console.log('getState la: ', getState)
                 let data={
                     resPrice: resPrice.data,
                     resPayment: resPayment.data,
                     resProvince: resProvince.data,
+                    resSpecialties: resSpecialties.data,
+                    resClinics: resClinics.data,
                 }
+                // console.log('check thong tin bac si: (adminAction)', data)
                 dispatch(fetchRequiredDoctorInfoSucceed(data));
             }else{
                 dispatch(fetchRequiredDoctorInfoFailed())

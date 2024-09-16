@@ -5,7 +5,7 @@ import './DoctorSchedule.scss'
 // import {getDetailOfDoctorServiceFromReact} from '../../../../services/userService'
 import { LANGUAGES } from '../../../../utils';
 import moment from 'moment'
-import localization from 'moment/locale/vi'
+// import localization from 'moment/locale/vi'
 import {getScheduleDoctorServiceFromReact} from '../../../../services/userService'
 import { FormattedMessage } from 'react-intl';
 import BookingModal from './Modal/BookingModal'
@@ -23,6 +23,13 @@ class DoctorSchedule extends Component {
     async componentDidMount(){
         let {language} = this.props;
         let allDays = this.getArrDays(language);
+        if(this.props.doctorIdFromParent){
+            let res = await getScheduleDoctorServiceFromReact(this.props.doctorIdFromParent, allDays[0].value)
+            this.setState({
+              allAvailableTime: res.data? res.data: []
+            })
+
+        }
         this.setState({
             allDays: allDays, 
         }) 
@@ -80,7 +87,7 @@ class DoctorSchedule extends Component {
             let date = event.target.value;
             let res = await getScheduleDoctorServiceFromReact(doctorId, date)
             // console.log('res: ', res)
-            let allTime = [];
+            // let allTime = [];
             if(res && res.errCode === 0){
                 this.setState({
                     allAvailableTime: res.data? res.data: []
@@ -104,12 +111,8 @@ class DoctorSchedule extends Component {
     render() {
         let {allDays,allAvailableTime, isOpenModalBooking, dataScheduleTimesModal} = this.state;
         let {language, detailOfDoctor }= this.props
-        console.log("check props from (DoctorSchedule): ", this.props)
-        // let nameVi='', nameEn='';
-        // if(detailOfDoctor && detailOfDoctor.positionData ) {
-        //     nameVi = `${detailOfDoctor.positionData.valueVi}, ${detailOfDoctor.lastName}  ${detailOfDoctor.firstName}`;
-        //     nameEn = `${detailOfDoctor.positionData.valueEn}, ${detailOfDoctor.firstName} ${detailOfDoctor.lastName}`;
-        // }
+        // console.log("check props from (DoctorSchedule): ", this.props)
+
         return (
             <React.Fragment>
                 <div className="doctor-schedule-container">

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './HomeHeader.scss';
-import { FormattedMessage } from 'react-intl';
-import{ LANGUAGES} from '../../utils';
+// import { FormattedMessage } from 'react-intl';
+// import{ LANGUAGES} from '../../utils';
 import {changeLanguageApp }from '../../store/actions'
 
 
@@ -18,7 +18,7 @@ class HomeFooter extends Component {
 
     render() {
         // console.log('day la: ', this.props)
-        let language = this.props.language;
+        // let language = this.props.language;
 
         return (
          <React.Fragment>

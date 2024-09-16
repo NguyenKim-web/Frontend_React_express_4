@@ -30,13 +30,15 @@ class OutstandingDoctor extends Component {
         this.props.loadTopDoctors();
     }
     handleViewDetailDoctor(doctor){
-        this.props.history.push(`/detail-doctor/${doctor.id}`)
+        if(this.props.history){
+            this.props.history.push(`/detail-doctor/${doctor.id}`)
+        }
     }
     render() {
        let allDoctors = this.state.arrDoctors;
        let {language} = this.props;
         // console.log( 'this.props (OutstandingDoctor): ',this.props.topDoctorsRedux)
-        // console.log( 'this.state (OutstandingDoctor): ',this.state)
+        console.log( 'this.state (OutstandingDoctor): ',this.state)
         return (
             <div className="section-content-common outstanding-doctor-content py-5">
                 <div className="container">
@@ -51,15 +53,13 @@ class OutstandingDoctor extends Component {
                             if(item.image){ imageBase64 = new Buffer(item.image, 'base64').toString('binary');}
                             let nameVi = `${item.positionData.valueVi}, ${item.lastName}  ${item.firstName}`;
                             let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
-                            console.log("nameVi: ", nameVi);
-                            console.log("LANGUAGES.VI: ", LANGUAGES.VI);
+                            // console.log("LANGUAGES.VI: ", LANGUAGES.VI);
                             return(
                                 <div className="item-customize-border" key={index} onClick={()=>this.handleViewDetailDoctor(item)}>
                                     <div className="item-customize doctor-item">
                                         <div className="img-customize doctor-img "
                                         style={{backgroundImage: `url(${imageBase64})`}}
                                         >
-                                        {/* <img className="doctor" src={imageBase64}/> */}
                                         </div>
                                         <p className='text-center'>{language === LANGUAGES.VI ? nameVi: nameEn}</p>
                                         <p className='text-center'>Cơ xương khớp</p>

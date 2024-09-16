@@ -1,8 +1,8 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { LANGUAGES } from '../../../../../utils';
 import { FormattedMessage } from 'react-intl';
-import { button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {  Modal, } from 'reactstrap';
 import './BookingModal.scss';
 import ProfileDoctor from '../ProfileDoctor';
 import _ from 'lodash';
@@ -10,7 +10,8 @@ import DatePicker from '../../../../../components/Input/DatePicker'
 import * as actions from '../../../../../store/actions'
 import Select from 'react-select'
 import {postPatientBookingServiceFromReact} from '../../../../../services/userService'
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
+import moment from 'moment'
 
 class BookingModal extends Component {
     constructor(props){
@@ -89,22 +90,52 @@ class BookingModal extends Component {
             selectedGender: selectedOption
         })
     }
+    buildTimeBooking =(dataTime)=>{
+        let {language }= this.props;
+
+        if(dataTime && !_.isEmpty(dataTime)){
+            let time = language === LANGUAGES.VI ? dataTime.timeTypeData.valueVi : dataTime.timeTypeData.valueEn
+            let date = language === LANGUAGES.VI ? moment.unix(+dataTime.date / 1000).format('dddd - DD/MM/YYYY')
+            : moment.unix(+dataTime.date / 1000).locale('en').format('ddd - MM/DD/YYYY')
+            return (`${time} - ${date} `)
+        }
+        return '';
+    }
+    buildDoctorName =(dataTime)=>{
+        let {language }= this.props;
+
+        if(dataTime && !_.isEmpty(dataTime)){
+            let name = language === LANGUAGES.VI ? `${dataTime.doctorData.lastName} ${dataTime.doctorData.firstName}` :
+            `${dataTime.doctorData.firstName} ${dataTime.doctorData.lastName}`
+            return name
+        }
+        return '';
+    }
+
     handleConfirmBooking = async()=>{
-        console.log('check data (form): ', this.state)
+        // console.log('check data (form): ', this.state)
+       
         let date = new Date(this.state.birthday).getTime();
+        let timeString = this.buildTimeBooking(this.props.dataScheduleTimesModalFromParent)
+        let doctorName = this.buildDoctorName(this.props.dataScheduleTimesModalFromParent)
+        
         let res = await postPatientBookingServiceFromReact({
             fullName: this.state.fullName,
             phoneNumber: this.state.phoneNumber,
             email: this.state.email ,
             address: this.state.address,
             reason: this.state.reason,
-            date:date,
-            // birthday: this.state.birthday,
+            date: this.props.dataScheduleTimesModalFromParent.date,
+            birthday: date ,
             selectedGender: this.state.selectedGender.value,
             doctorId: this.state.doctorId,
-            timeType: this.state.timeType
-            
+            timeType: this.state.timeType,
+            language: this.props.language,
+            timeString: timeString,
+            doctorName: doctorName
         })
+        // console.log('check booking info *(res) : ', res)
+
         if(res && res.errCode=== 0){
             toast.success("Booking a appointment is succeed")
             // this.props.closeBookingModalFromParent();
@@ -116,12 +147,12 @@ class BookingModal extends Component {
 
     }
     render() {
-        let{isOpenModalBookingFromParen, closeBookingModalFromParent, dataScheduleTimesModalFromParent, detailOfDoctor} = this.props;
+        let{isOpenModalBookingFromParen, closeBookingModalFromParent, dataScheduleTimesModalFromParent} = this.props;
        let doctorId ='';
        if(dataScheduleTimesModalFromParent && !_.isEmpty(dataScheduleTimesModalFromParent)){
         doctorId= dataScheduleTimesModalFromParent.doctorId
        }
-    //    console.log("check input from (bookingModal): ", this.state)
+    //    console.log("check dataScheduleTimesModalFromParent (bookingModal): ", dataScheduleTimesModalFromParent)
        
 
        
@@ -146,6 +177,8 @@ class BookingModal extends Component {
                                 doctorId= {doctorId}
                                 isShowDescDoctor={false}
                                 dataTime={dataScheduleTimesModalFromParent}
+                                isShowLinkDetail={false}
+                                    isShowPrice={true}
                                 // detailOfDoctor = {detailOfDoctor}
                             />
                             </div>

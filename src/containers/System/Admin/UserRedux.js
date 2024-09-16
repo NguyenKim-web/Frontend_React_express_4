@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import {LANGUAGES, CRUD_ACTION, CommonUtils} from '../../../utils';
 import * as actions from '../../../store/actions'
-import { createNewUser } from '../../../store/actions/adminActions';
+// import { createNewUser } from '../../../store/actions/adminActions';
 import TableManageUser from './TableManageUser';
 import './UserRedux.scss'
 
@@ -93,7 +93,7 @@ class UserRedux extends Component {
         let data = event.target.files;
         // console.log('data image: ', data) 
         let file = data[0];
-        console.log('data (handleOnchangeImage): ', data[0])
+        // console.log('data (handleOnchangeImage): ', data[0])
         if(file){
             let base64 = await CommonUtils.getBase64(file);
             // console.log('base64: ', base64);
@@ -205,7 +205,7 @@ class UserRedux extends Component {
         // console.log('check props component from UserRedux:', this.props)
 
         let{ email,  password,  firstName, lastName,  phoneNumber,
-            address,  gender, positionId, roleId, avatar} = this.state;
+            address,  gender, positionId, roleId} = this.state;
         return (
             <div className="my-5">
                 <h1 className="text-center title" >User redux</h1>
